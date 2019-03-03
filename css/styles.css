@@ -1,7 +1,7 @@
-div.customTable{
+/*div.customTable{
     display:flex;
     width: 100%
-}
+}*/
 #customTable{
     width: 100%;
     border: 1px solid black;
@@ -27,4 +27,8 @@ div.customTable{
     text-align: left;
     background-color: rgba(17, 67, 107, 0.534);
     color: white;
-  }
+}
+#toolsCustomTable{
+    display:block;
+    width: 100%;
+}

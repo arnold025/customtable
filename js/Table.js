@@ -13,11 +13,15 @@ class Table{
 
     initContent(){
         RenderTable.init(this._header, this._content);
+        if(this._params){
+            this.displayParamsTable();
+        }
         // this.displayTable({header, body});
     }
-
-    displayTable({header,body}){
-        
+    
+    displayParamsTable(){
+        const {filter, edit} = this._params;
+        if(filter) Filter.init();
     }
 }
 /**Example
@@ -49,7 +53,8 @@ var Example = {
 		}
     ],
     params : {
-        
+        filter : true,
+        edit : false
     }
 	
 }
