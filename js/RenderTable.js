@@ -10,8 +10,8 @@ class RenderTable{
     }
     static renderHeader(dataHeader){
         let thead = "<thead><tr>";
-        Object.keys(dataHeader).map(item => {
-            thead += `<th>${dataHeader[item]}</th>`;
+        dataHeader.forEach(element => {
+            thead += `<th>${element}</th>`;
         });
         thead += "</tr></thead>";
         this._table.innerHTML=thead;
