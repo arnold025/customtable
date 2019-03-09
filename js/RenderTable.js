@@ -29,4 +29,13 @@ class RenderTable{
         tbody += "</tbody>";
         this._table.innerHTML+=tbody;
     }
+
+    /**
+     * @static
+     * @memberof RenderTable
+     */
+    static renderBodyBySearch(inTable){
+        this._table.children[1].remove()
+        this.renderBody(inTable);
+    }
 }
