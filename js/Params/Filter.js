@@ -11,24 +11,23 @@ class Filter {
 
     static listenInput(){
         let input = document.querySelector('#searchTable').value;
-        // if(!input) this.restoreTable();
         let inTable = this.searchInTable(input.toUpperCase());
         RenderTable.renderBodyBySearch(inTable);
     }
-    
+
     //Función que busca en el objeto table.
     static searchInTable(search){
-        if(search=="") return Table._content;
+        // if(!search) return Table._content;
         let inTable = [];
         Table._content.forEach(function(value){
-            let control = false;
+            let coincidence = false;
             Object.keys(value).map(item => {
                 let word = value[item].toUpperCase();
                 if(word.includes(search)){
-                    control = true;
+                    coincidence = true;
                 }
             });
-            if(control) inTable.push(value);
+            if(coincidence) inTable.push(value);
         });
         return inTable;
     }
