@@ -19,8 +19,8 @@ class Order{
      * para después ordenar de forma ascendente o descendente dicha columna.
      */
     static listenClick(){
-        // let order = document.querySelectorAll("thead th");//Cambiar selector
-        [].forEach.call(document.querySelectorAll("thead th"), function(el) {
+        let order = document.querySelectorAll("thead th");//Cambiar selector
+        [].forEach.call(order, function(el) {
             el.addEventListener("click", function() {
                 let parent = el.closest('tr');
                 parent.childNodes.forEach(function(element,index){
@@ -35,8 +35,14 @@ class Order{
     static sortTable(position){
         let keys = Object.keys(Table._content[0]);
         let index = keys[position];
-        Table._content = this.sortElements(Table._content, index);
-        RenderTable.renderBodyBySearch(Table._content);
+        let content = Table.getContentModifiedInTable();
+        if(content.length>0){
+            content = this.sortElements(content, index);
+        }else{
+            content = Table.getContentTable();
+            content = this.sortElements(content, index);
+        }
+        RenderTable.renderBodyBySearch(content);
     }
 
     static sortElements(element, index, type='ASC'){
