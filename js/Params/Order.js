@@ -25,29 +25,41 @@ class Order{
                 let parent = el.closest('tr');
                 parent.childNodes.forEach(function(element,index){
                     if(element ===el){
-                        Order.orderTable(index);
+                        Order.sortTable(index);
                     }
                 })
             });
         });
     }
 
-    static orderTable(position){
+    static sortTable(position){
         let keys = Object.keys(Table._content[0]);
-        let order = keys[position];
-        Table._content.sort(function (a, b) {
-            if(!isNaN(parseInt(a[order])) && !isNaN(parseInt(a[order]))){
-                a[order]= parseInt(a[order]);
-                b[order]= parseInt(b[order]);
-            }
-            if (a[order] > b[order]) {
-                return 1;
-            }
-            if (a[order] < b[order]) {
-                return -1;
-            }
-            return 0;
-        });
+        let index = keys[position];
+        Table._content = this.sortElements(Table._content, index);
         RenderTable.renderBodyBySearch(Table._content);
+    }
+
+    static sortElements(element, index, type='ASC'){
+        element.sort(function (a, b) {
+            let elementA = a[index];
+            let elementB = b[index];
+            if(!isNaN(parseInt(elementA)) && !isNaN(parseInt(elementB))){
+                elementA= parseInt(elementA);
+                elementB= parseInt(elementB);
+            }
+            if(type=='ASC') return Order.orderElements(elementA,elementB);
+            else return Order.orderElements(elementB,elementA);
+        });
+        return element;
+    }
+
+    static orderElements(elementA, elementB){
+        if (elementA > elementB) {
+            return 1;
+        }
+        if (elementA < elementB) {
+            return -1;
+        }
+        return 0;
     }
 }
