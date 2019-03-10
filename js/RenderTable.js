@@ -18,24 +18,22 @@ class RenderTable{
     }
     
     static renderBody(dataBody){
-        let tbody ="<tbody>"
+        let tbody = document.createElement('tbody');
+        let content ="";
         Object.keys(dataBody).map(item => {
-            tbody+= "<tr>";
+            content+= "<tr>";
             Object.keys(dataBody[item]).map(element => {
-                tbody+= `<td>${dataBody[item][element]}</td>`
+                content+= `<td>${dataBody[item][element]}</td>`
             });
-            tbody+= "</tr>";
+            content+= "</tr>";
         });
-        tbody += "</tbody>";
-        this._table.innerHTML+=tbody;
+        tbody.innerHTML=content.trim();
+        this._table.appendChild(tbody);
     }
 
-    /**
-     * @static
-     * @memberof RenderTable
-     */
     static renderBodyBySearch(inTable){
-        this._table.children[1].remove()
+        let body = document.querySelector('#customTable>tbody');
+        this._table.removeChild(body);
         this.renderBody(inTable);
     }
 }

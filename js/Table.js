@@ -8,9 +8,22 @@ class Table{
         this._content = content;//Contenido de la tabla.
         this._params = params;//Parámetros adicionales, filtro, edición...
         this._config = config;//Configuración de la tabla.
+        this._dataModified = []; //Aquí se guardarán las modificaciones en el DOM que se realicen sobre la tabla.
         this.initContent();
     }
     
+    static setContentModifiedInTable(content){
+        this._dataModified = content;
+    }
+    
+    static getContentModifiedInTable(){
+        return this._dataModified;
+    }
+
+    static getContentTable(){
+        return this._content;
+    }
+
     static initContent(){
         RenderTable.init(this._header, this._content);
         if(this._params){
@@ -20,8 +33,10 @@ class Table{
     }
     
     static displayParamsTable(){
-        const {filter, edit} = this._params;
+        const {filter, edit, order} = this._params;
         if(filter) Filter.init();
+        // if(edit) Edit.init();
+        if(order) Order.init();
     }
 }
 /**Example
@@ -39,29 +54,37 @@ var Example = {
 		},
 		{
             'name' : 'Amanda',
-            'lastName' : 'Cañamás Morelli',
+            'lastName' : 'Morelli',
             'Age' : '27',
             'Ocupation' : 'Scientist',
             'Sex' : 'Female'
 		},
 		{
-            'name' : 'Paca',
+            'name' : 'Paula',
             'lastName' : 'Cañamás',
-            'Age' : '27',
-            'Ocupation' : 'Studient',
+            'Age' : '22',
+            'Ocupation' : 'Administrative',
             'Sex' : 'Female'
 		},
 		{
             'name' : 'Franz',
             'lastName' : 'Solorzano Moreno',
-            'Age' : '27',
-            'Ocupation' : 'administrative',
+            'Age' : '28',
+            'Ocupation' : 'Administrative',
+            'Sex' : 'Male'
+		},
+		{
+            'name' : 'Blacky',
+            'lastName' : '',
+            'Age' : '6',
+            'Ocupation' : '',
             'Sex' : 'Male'
 		}
     ],
     params : {
         filter : true,
-        edit : false
+        edit : false,
+        order: true
     }
 	
 }

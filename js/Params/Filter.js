@@ -12,6 +12,7 @@ class Filter {
     static listenInput(){
         let input = document.querySelector('#searchTable').value;
         let inTable = this.searchInTable(input.toUpperCase());
+        Table.setContentModifiedInTable(inTable);
         RenderTable.renderBodyBySearch(inTable);
     }
 
