@@ -2,6 +2,7 @@ class Edit{
 
     static init(){
         this.displayButtons();
+        this.listenClickButton();
     }
 
     static displayButtons(){
@@ -15,4 +16,11 @@ class Edit{
         div.appendChild(tbody);
     }
     
+    static listenClickButton(){
+        let buttons = document.querySelectorAll(".btn-table");
+        [].forEach.call(buttons, function(el) {
+            el.addEventListener("click", function() {
+            });
+        });
+    }
 }

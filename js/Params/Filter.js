@@ -6,7 +6,10 @@ class Filter {
 
     static displayFilter(){
         let div = document.querySelector('#toolsCustomTable');
-        div.innerHTML='<input type="text" id="searchTable" value="" onKeyUp="Filter.listenInput()" name="filter" placeholder="Search...">';
+        let container = document.createElement('div');
+        container.classList.add('filter-table');
+        container.innerHTML='<input type="text" id="searchTable" value="" onKeyUp="Filter.listenInput()" name="filter" placeholder="Search...">';
+        div.appendChild(container);
     }
 
     static listenInput(){

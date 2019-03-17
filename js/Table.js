@@ -34,8 +34,8 @@ class Table{
     
     static displayParamsTable(){
         const {filter, edit, order} = this._params;
-        if(filter) Filter.init();
         if(edit) Edit.init();
+        if(filter) Filter.init();
         if(order) Order.init();
     }
 }
