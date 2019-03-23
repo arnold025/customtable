@@ -24,6 +24,10 @@ class Table{
         return this._content;
     }
 
+    static getHeaderTable(){
+        return this._header;
+    }
+
     static initContent(){
         RenderTable.init(this._header, this._content);
         if(this._params){

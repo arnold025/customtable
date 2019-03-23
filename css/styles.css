@@ -174,7 +174,6 @@ input[type=text]:focus {
   to {top:0; opacity:1}
 }
 
-/* The Close Button */
 .close-modal-cTable {
   color: white;
   float: right;
@@ -211,3 +210,5 @@ input[type=text]:focus {
 .hiddenModal{
   display: none !important;
 }
+
+/**Fin Modal**/
