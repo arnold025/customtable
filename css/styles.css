@@ -1,3 +1,6 @@
+body{
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+}
 #customTable{
     width: 100%;
     border: 1px solid black;
@@ -79,22 +82,128 @@
     background-color: rgb(172, 39, 39);
     color: white;
   }
-
+  input[type=text]{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 6px 10px 6px 20px;
+  }
 /**Input search**/
-input[type=text] {
-  width: 130px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
+input[type=text]#searchTable {
   background-color: white;
   background-image: url('../img/searchicon.png');
   background-position: 10px 10px; 
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
   transition: width 0.4s ease-in-out;
+  padding: 12px 20px 12px 40px;
 }
 
 input[type=text]:focus {
   width: 100%;
+}
+
+/**Modal**/
+/* The Modal (background) */
+.modal-cTable {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-cTable-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.modal-fields{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.modal-fields input[type=text]{
+  width: 30%;
+}
+.modal-fields label{
+  width: 30%;
+}
+.modal-cTable .btn-modal{
+  border-radius: 5px;
+  background-color: #42424270;
+}
+@media (max-width: 576px){
+  .modal-cTable-content {
+    width: 90%;
+  }
+  .modal-fields label{
+    width: 100%;
+  }
+  .modal-fields input[type=text]{
+    width: 100%;
+  }
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-cTable-header {
+  padding: 0.5rem;
+  background-color: #42424270;
+  color: white;
+  border-radius: 14px 14px 0px 0px;
+}
+
+.modal-cTable-body {
+  padding: 2px 16px;
+  margin: 0.4rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+  background-color: #42424270;
+  color: white;
+  border-radius: 0px 0px 14px 14px;
+  text-align: right;
 }
