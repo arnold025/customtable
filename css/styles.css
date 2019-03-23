@@ -175,14 +175,14 @@ input[type=text]:focus {
 }
 
 /* The Close Button */
-.close {
+.close-modal-cTable {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover, .close:focus {
+.close-modal-cTable:hover, .close-modal-cTable:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -206,4 +206,8 @@ input[type=text]:focus {
   color: white;
   border-radius: 0px 0px 14px 14px;
   text-align: right;
+}
+
+.hiddenModal{
+  display: none !important;
 }
