@@ -3,6 +3,7 @@ class Edit{
     static init(){
         this.displayButtons();
         this.listenClickButton();
+        Modal.init();
     }
 
     static displayButtons(){
@@ -17,10 +18,18 @@ class Edit{
     }
     
     static listenClickButton(){
-        let buttons = document.querySelectorAll(".btn-table");
-        [].forEach.call(buttons, function(el) {
-            el.addEventListener("click", function() {
-            });
+        let addBtn = document.querySelector('.btn-create');
+        let editBtn = document.querySelector('.btn-edit');
+        let deleteBtn = document.querySelector('.btn-delete');
+        addBtn.addEventListener('click', function(){
+            Modal.openModal();
+        });
+        editBtn.addEventListener('click', function(){
+            console.log('edito');
+        });
+        deleteBtn.addEventListener('click', function(){
+            console.log('borrooo');
         });
     }
+    
 }
