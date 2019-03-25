@@ -19,7 +19,7 @@ class Order{
      * para después ordenar de forma ascendente o descendente dicha columna.
      */
     static listenClick(){
-        let order = document.querySelectorAll("thead th");//Cambiar selector
+        let order = document.querySelectorAll("thead th:not(.actions-cTable)");//Cambiar selector
         [].forEach.call(order, function(el) {
             el.addEventListener("click", function() {
                 let parent = el.closest('tr');
