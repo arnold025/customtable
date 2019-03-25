@@ -3,7 +3,7 @@
  */
 class Table{
     static init(data){
-        const { header, content, params,config } = data;
+        const { header, content, params, config } = data;
         this._header = header;//Cabecera de la tabla.
         this._content = content;//Contenido de la tabla.
         this._params = params;//Parámetros adicionales, filtro, edición...
@@ -41,6 +41,10 @@ class Table{
         if(edit) Edit.init();
         if(filter) Filter.init();
         if(order) Order.init();
+    }
+
+    static getConfigTable(){
+        return this._config;
     }
 }
 /**Example
@@ -89,6 +93,13 @@ var Example = {
         filter : true,
         edit : true,
         order: true
+    },
+    config : {
+        actions : true,
+        realTime: false,
+        preview: true,
+        inlineEdit : false,
+        modal: true
     }
 	
 }

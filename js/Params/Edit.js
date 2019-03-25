@@ -1,35 +1,15 @@
 class Edit{
 
     static init(){
-        this.displayButtons();
-        this.listenClickButton();
-        Modal.init();
-    }
-
-    static displayButtons(){
-        let div = document.querySelector('#toolsCustomTable');
-        let tbody = document.createElement('div');
-        tbody.classList.add('buttons-table');
-        let buttons = "<button class='btn-table btn-create'>New</button> "+
-                    "<button class='btn-table btn-edit'>Edit</button>"+
-                    "<button class='btn-table btn-delete'>Delete</button>";
-        tbody.innerHTML=buttons;
-        div.appendChild(tbody);
+        this.displayEditableTableByOptions();
     }
     
-    static listenClickButton(){
-        let addBtn = document.querySelector('.btn-create');
-        let editBtn = document.querySelector('.btn-edit');
-        let deleteBtn = document.querySelector('.btn-delete');
-        addBtn.addEventListener('click', function(){
-            Modal.openModal();
-        });
-        editBtn.addEventListener('click', function(){
-            console.log('edito');
-        });
-        deleteBtn.addEventListener('click', function(){
-            console.log('borrooo');
-        });
+    /**
+     * Función en la que despliego diferentes llamadas a clases en relación a los parámetros que se han pasado en la posición 'config'.
+     */
+    static displayEditableTableByOptions(){//Función que recoge parámetros propios de la clase Edit.
+        const {modal, actions, inlineEdit, preview, realTime} = Table.getConfigTable();
+        if(modal) Modal.init();
+        if(actions) RenderTable.displayActionsInTable();
     }
-    
 }

@@ -23,6 +23,10 @@ body{
     text-align: left;
     background-color: rgba(17, 67, 107, 0.534);
     color: white;
+    cursor: pointer;
+}
+#customTable th:hover {
+    background-color:rgba(17, 71, 107, 0.301);
 }
 
 /**Div tools table**/
@@ -151,6 +155,10 @@ input[type=text]:focus {
   border-radius: 5px;
   background-color: #42424270;
 }
+.modal-cTable .btn-modal:hover{
+  border-radius: 5px;
+  background-color: #1dda0e61;
+}
 @media (max-width: 576px){
   .modal-cTable-content {
     width: 90%;
@@ -189,7 +197,7 @@ input[type=text]:focus {
 
 .modal-cTable-header {
   padding: 0.5rem;
-  background-color: #42424270;
+  background-color: #48578a;
   color: white;
   border-radius: 14px 14px 0px 0px;
 }
@@ -201,7 +209,7 @@ input[type=text]:focus {
 
 .modal-footer {
   padding: 1rem;
-  background-color: #42424270;
+  background-color: #48578a;
   color: white;
   border-radius: 0px 0px 14px 14px;
   text-align: right;
