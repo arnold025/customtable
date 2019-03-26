@@ -3,7 +3,7 @@ body{
 }
 #customTable{
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     border-collapse: collapse;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -28,7 +28,11 @@ body{
 #customTable th:hover {
     background-color:rgba(17, 71, 107, 0.301);
 }
-
+#customTable .actions-cTable{
+  border: 1px solid #ddd;
+  width: 5%;
+  text-align: center;
+}
 /**Div tools table**/
 
 #toolsCustomTable{
@@ -63,26 +67,26 @@ body{
     color: white;
   }
   
-  .btn-edit {
+  button.btn-edit {
     background-color: white; 
     color: black; 
     border: 2px solid #008CBA;
     border-radius: 5px;
   }
   
-  .btn-edit:hover {
+  button.btn-edit:hover {
     background-color: #008CBA;
     color: white;
   }
   
-  .btn-delete {
+  button.btn-delete {
     background-color: white; 
     color: black; 
     border: 2px solid rgb(172, 39, 39);;
     border-radius: 5px;
   }
   
-  .btn-delete:hover {
+  button.btn-delete:hover {
     background-color: rgb(172, 39, 39);
     color: white;
   }

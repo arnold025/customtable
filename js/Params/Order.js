@@ -1,6 +1,6 @@
 class Order{
     static init(){
-        this.displayButtons();
+        // this.displayButtons();
         this.listenClick();
     }
 
@@ -20,8 +20,10 @@ class Order{
      */
     static listenClick(){
         let order = document.querySelectorAll("thead th:not(.actions-cTable)");//Cambiar selector
+        
         [].forEach.call(order, function(el) {
             el.addEventListener("click", function() {
+                console.log('entro')
                 let parent = el.closest('tr');
                 parent.childNodes.forEach(function(element,index){
                     if(element ===el){

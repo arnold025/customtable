@@ -46,30 +46,4 @@ class RenderTable{
     static getBodyTable(){
         return this._tbody;
     }
-
-    static displayActionsInTable(){
-        this.displayColumnForActions();
-        this.displayRowsForActions();
-    }
-
-    static displayColumnForActions(){
-        let tr = this.getHeaderTable().children[0];
-        let actions = document.createElement('th');
-        actions.classList.add('actions-cTable');
-        let message = 'Actions';
-        actions.innerHTML=message;
-        tr.appendChild(actions);
-    }
-
-    static displayRowsForActions(){
-        let body = this.getBodyTable().children;
-        console.log(body);
-        let rows = document.createElement('td');
-        let actions = `<i class="fas fa-plus"></i><i class="fas fa-edit"></i><i class="fas fa-trash-alt"></i>`;
-        rows.innerHTML = actions;
-        Object.keys(body).map(value => {
-            console.log(body[value]);
-        });
-        
-    }
 }

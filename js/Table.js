@@ -29,10 +29,10 @@ class Table{
     }
 
     static initContent(){
-        RenderTable.init(this._header, this._content);
         if(this._params){
             this.displayParamsTable();
         }
+        RenderTable.init(this._header, this._content);
         // this.displayTable({header, body});
     }
     
@@ -40,7 +40,7 @@ class Table{
         const {filter, edit, order} = this._params;
         if(edit) Edit.init();
         if(filter) Filter.init();
-        if(order) Order.init();
+        if(order) Order.init();//depende de la carga del DOM.
     }
 
     static getConfigTable(){
@@ -62,17 +62,17 @@ var Example = {
 		},
 		{
             'name' : 'Amanda',
-            'lastName' : 'Morelli',
+            'lastName' : 'Cañamás Morelli',
             'Age' : '27',
             'Ocupation' : 'Scientist',
             'Sex' : 'Female'
 		},
 		{
-            'name' : 'Paula',
-            'lastName' : 'Cañamás',
-            'Age' : '22',
-            'Ocupation' : 'Administrative',
-            'Sex' : 'Female'
+            'name' : 'Dani',
+            'lastName' : 'Bogdán',
+            'Age' : '3',
+            'Ocupation' : 'Tocapelotas',
+            'Sex' : 'Male'
 		},
 		{
             'name' : 'Franz',
@@ -101,5 +101,4 @@ var Example = {
         inlineEdit : false,
         modal: true
     }
-	
 }
