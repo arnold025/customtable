@@ -54,10 +54,13 @@ class Edit{
     }
 
     static editRow(element){
+        let row = element.closest('tr');
         let keyRow = row.dataset["idrow"];
         let originalRow = Table.getRowByKey(keyRow);
-        let row = element.closest('tr');
-        console.log(originalRow);
+        let rows = row.children;
+        Object.keys(rows).forEach(function(el){
+            rows[el].innerHTML=`<input type="text" value ="${rows[el].textContent}">`;
+        });
     }
 
     static removeRow(element){
