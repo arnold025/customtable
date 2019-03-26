@@ -2,6 +2,11 @@ class Edit{
 
     static init(){
         this.displayEditableTableByOptions();
+        const existsTable = RenderTable.isRenderTable();
+        existsTable.then(function(){//Me aseguro que la tabla ya esté renderizada antes de asignarle los eventos.
+            Edit.listenClick();
+        })
+        this._modifiedData = []; // Array en el que se almacenarán los datos modificados.
     }
     
     /**
@@ -25,9 +30,38 @@ class Edit{
 
     static displayRowsForActions(){
         let table = Table.getContentTable();
-        let actions = '<i class="fas fa-edit btn-edit"></i><i class="fas fa-trash-alt btn-delete"></i>';
+        let actions = '<i class="fas fa-edit btn-edit-inline"></i><i class="fas fa-trash-alt btn-delete-inline"></i>';
         Object.keys(table).map(value => {
             table[value]['actions'] = actions;
         });
+    }
+
+    static listenClick(){
+        let btnEdit = document.querySelectorAll('.btn-edit-inline');
+        let btnDelete = document.querySelectorAll('.btn-delete-inline');
+        let that = this;
+        
+        [].forEach.call(btnEdit, function(el) {
+            el.addEventListener("click", function() {
+                that.editRow(this);
+            });
+        });
+        [].forEach.call(btnDelete, function(el) {
+            el.addEventListener("click", function() {
+                that.removeRow(this);
+            });
+        });
+    }
+
+    static editRow(element){
+        let keyRow = row.dataset["idrow"];
+        let originalRow = Table.getRowByKey(keyRow);
+        let row = element.closest('tr');
+        console.log(originalRow);
+    }
+
+    static removeRow(element){
+        let row = element.closest('tr');
+        console.log(row);
     }
 }

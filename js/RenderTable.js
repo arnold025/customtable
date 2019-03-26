@@ -7,7 +7,13 @@ class RenderTable{
         this._table = document.querySelector('#customTable');
         this.renderHeader(dataHeader);
         this.renderBody(dataBody);
+        this._renderTable= true;
     }
+
+    static async isRenderTable(){
+        return this._renderTable || false;
+    }
+
     static renderHeader(dataHeader){
         this._thead = document.createElement('thead');
         let rows = "<tr>";
@@ -20,14 +26,19 @@ class RenderTable{
     }
     
     static renderBody(dataBody){
+        let hiddenItems = Table.getHiddenData();
+        let key = Table.getKeysByTable();
         this._tbody = document.createElement('tbody');
         let content ="";
+        let td="";
         Object.keys(dataBody).map(item => {
-            content+= "<tr>";
             Object.keys(dataBody[item]).map(element => {
-                content+= `<td>${dataBody[item][element]}</td>`
+                if(!hiddenItems.includes(element.toLowerCase()) ){
+                    td += `<td>${dataBody[item][element]}</td>`
+                }
             });
-            content+= "</tr>";
+            content+= `<tr data-idrow="${dataBody[item][key]}">${td}</tr>`;
+            td="";
         });
         this._tbody.innerHTML=content.trim();
         this._table.appendChild(this._tbody);

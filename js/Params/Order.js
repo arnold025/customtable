@@ -1,7 +1,9 @@
 class Order{
     static init(){
-        // this.displayButtons();
-        this.listenClick();
+        const existsTable = RenderTable.isRenderTable();
+        existsTable.then(function(){//Me aseguro que la tabla ya esté renderizada antes de asignarle los eventos.
+            Order.listenClick();
+        });
     }
 
     /**
@@ -23,7 +25,6 @@ class Order{
         
         [].forEach.call(order, function(el) {
             el.addEventListener("click", function() {
-                console.log('entro')
                 let parent = el.closest('tr');
                 parent.childNodes.forEach(function(element,index){
                     if(element ===el){
