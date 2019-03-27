@@ -36,7 +36,7 @@ class Order{
     }
 
     static sortTable(position){
-        let keys = Object.keys(Table._content[0]);
+        let keys = Table.getColumnsWithoutHiddenData();
         let index = keys[position];
         let content = Table.getContentModifiedInTable();
         if(content.length>0){

@@ -30,7 +30,7 @@ class Edit{
 
     static displayRowsForActions(){
         let table = Table.getContentTable();
-        let actions = '<i class="fas fa-edit btn-edit-inline"></i><i class="fas fa-trash-alt btn-delete-inline"></i>';
+        let actions = '<div class="actions-cTable"><i class="fas fa-edit btn-edit-inline"></i><i class="fas fa-trash-alt btn-delete-inline"></i></div>';
         Object.keys(table).map(value => {
             table[value]['actions'] = actions;
         });
@@ -57,9 +57,12 @@ class Edit{
         let row = element.closest('tr');
         let keyRow = row.dataset["idrow"];
         let originalRow = Table.getRowByKey(keyRow);
+        console.log(originalRow)
         let rows = row.children;
         Object.keys(rows).forEach(function(el){
-            rows[el].innerHTML=`<input type="text" value ="${rows[el].textContent}">`;
+            if(rows[el].children.length==0){
+                rows[el].innerHTML=`<input class="inline-cTable" type="text" value ="${rows[el].textContent}">`;
+            }
         });
     }
 

@@ -42,13 +42,22 @@ class Table{
         return hiddenData;
     }
 
+    static getColumnsWithoutHiddenData(){
+        let hiddenData = this.getHiddenData();
+        let content = this.getContentTable()[0];
+        if(content[hiddenData]) delete content[hiddenData];
+        return Object.keys(content)
+    }
+
     /**
      * Función en la que se devuelve el objeto asociado a la key (o keys) que se pasan como parámetros al JSON inicial.
      */
     static getRowByKey(keyRow){
         let key = this.getKeysByTable();
         let data = this.getContentTable();
-        return data.filter(row => row[key] == keyRow)[0];
+        data = data.filter(row => row[key] == keyRow)[0];
+        if(data['actions']) delete data["actions"];
+        return data;
     }
 
     static initContent(){

@@ -29,9 +29,11 @@ body{
     background-color:rgba(17, 71, 107, 0.301);
 }
 #customTable .actions-cTable{
-  border: 1px solid #ddd;
-  width: 5%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#customTable .actions-cTable i{
+  /* margin-left: 5%; */
 }
 /**Div tools table**/
 
@@ -98,6 +100,10 @@ body{
     font-size: 16px;
     padding: 6px 10px 6px 20px;
   }
+  input.inline-cTable{
+    font-size: 90% !important;
+    padding: 5px;
+  }
 /**Input search**/
 input[type=text]#searchTable {
   background-color: white;
@@ -108,7 +114,7 @@ input[type=text]#searchTable {
   padding: 12px 20px 12px 40px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus:not(.inline-cTable) {
   width: 100%;
 }
 
