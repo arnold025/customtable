@@ -48,6 +48,7 @@ class RenderTable{
         let body = document.querySelector('#customTable>tbody');
         this._table.removeChild(body);
         this.renderBody(inTable);
+        Edit.listenClick();
     }
 
     static getHeaderTable(){

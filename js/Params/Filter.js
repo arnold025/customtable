@@ -22,13 +22,17 @@ class Filter {
     //Función que busca en el objeto table.
     static searchInTable(search){
         // if(!search) return Table._content;
+        let hiddenData = Table.getHiddenData();
+        let contentInTable = Table.getContentTable();
         let inTable = [];
-        Table._content.forEach(function(value){
+        contentInTable.forEach(function(value){
             let coincidence = false;
             Object.keys(value).map(item => {
-                let word = value[item].toUpperCase();
-                if(word.includes(search)){
-                    coincidence = true;
+                if(item!=hiddenData){
+                    let word = value[item].toUpperCase();
+                    if(word.includes(search)){
+                        coincidence = true;
+                    }
                 }
             });
             if(coincidence) inTable.push(value);

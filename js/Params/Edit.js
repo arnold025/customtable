@@ -25,7 +25,7 @@ class Edit{
 
     static displayColumnForActions(){
         let header = Table.getHeaderTable();
-        header.push('Actions');
+        if(header.indexOf('Actions')<0) header.push('Actions');
     }
 
     static displayRowsForActions(){
@@ -40,28 +40,32 @@ class Edit{
         let btnEdit = document.querySelectorAll('.btn-edit-inline');
         let btnDelete = document.querySelectorAll('.btn-delete-inline');
         let that = this;
-        
-        [].forEach.call(btnEdit, function(el) {
+        btnEdit.forEach(function(el) {
             el.addEventListener("click", function() {
                 that.editRow(this);
             });
         });
-        [].forEach.call(btnDelete, function(el) {
+        btnDelete.forEach(function(el) {
             el.addEventListener("click", function() {
                 that.removeRow(this);
             });
         });
     }
-
+    /**
+     * Función que hace que una fila sea editable.
+     * @param {*} element -> elemento al que se ha hecho click
+     */
     static editRow(element){
-        let row = element.closest('tr');
+        // let cols = Table.getColumnsWithoutHiddenData();//Columnas editables (que son visibles)
+        let row = element.closest('tr');//Fila del DOM
         let keyRow = row.dataset["idrow"];
-        let originalRow = Table.getRowByKey(keyRow);
-        console.log(originalRow)
+        let originalRow = Table.getRowByKey(keyRow);//Almaceno los valores originales de la fila.
         let rows = row.children;
+        
         Object.keys(rows).forEach(function(el){
-            if(rows[el].children.length==0){
-                rows[el].innerHTML=`<input class="inline-cTable" type="text" value ="${rows[el].textContent}">`;
+            if(rows[el].children.length==0){// data-${cols[el]}=${rows[el].textContent}
+                rows[el].innerHTML=`<input class="inline-cTable"
+                                    type="text" value ="${rows[el].textContent}">`;
             }
         });
     }

@@ -44,9 +44,16 @@ class Table{
 
     static getColumnsWithoutHiddenData(){
         let hiddenData = this.getHiddenData();
-        let content = this.getContentTable()[0];
-        if(content[hiddenData]) delete content[hiddenData];
-        return Object.keys(content)
+        let contentTable = this.getContentTable()[0];
+        let col = [];
+        let cont=0;
+        Object.keys(contentTable).forEach(function(el){
+            if(el != hiddenData){
+                col[cont]=el;
+                cont++;
+            }
+        });
+        return col;
     }
 
     /**
@@ -55,9 +62,13 @@ class Table{
     static getRowByKey(keyRow){
         let key = this.getKeysByTable();
         let data = this.getContentTable();
+        console.log(data)
         data = data.filter(row => row[key] == keyRow)[0];
-        if(data['actions']) delete data["actions"];
-        return data;
+        let row ={};
+        Object.keys(data).forEach(function(element){
+            if(element!='actions') row[element] = data[element]
+        });
+        return row;
     }
 
     static initContent(){
@@ -69,6 +80,8 @@ class Table{
     }
     
     static displayParamsTable(){
+        //TODO:: Esta función no sólo debe inicializar las clases, sino también cargarlas.
+        //En la carga inicial del DOM sólo debe cargar la clase principal `Table` y desde aquí llamar a las que se requieran.
         const {filter, edit, order} = this._params;
         if(edit) Edit.init();
         if(filter) Filter.init();
@@ -83,61 +96,69 @@ class Table{
  * TODO:: DELETE Example!!
  */
 var Example = {
-    keys : 'id',
-    hidden : 'id',
-	header : ['Name','Last name', 'Age', 'Ocupation', 'Sex'],
-	content : [
+    keys : 'id',//TODO:: Preparar para trabajar con claves compuestas
+    hidden : 'id',//Columnas que no se quiere mostrar en el DOM pero son necesarias para trabajar. Ejemplo: ID
+	header : ['Name','Last name', 'Age', 'Ocupation', 'Sex'],//Cabecera de la tabla.
+	content : [//Contenido de la tabla.
         {
             'id' : 862,
-            'name' : 'Arnold',
-            'lastName' : 'Solorzano Moreno',
-            'Age' : '23',
-            'Ocupation' : 'Web developer',
+            'name' : 'David',
+            'lastName' : 'Gonzales Romero',
+            'Age' : '34',
+            'Ocupation' : 'Teacher',
             'Sex' : 'Male'
 		},
 		{
             'id' : 323,
-            'name' : 'Amanda',
-            'lastName' : 'Cañamás Morelli',
-            'Age' : '27',
-            'Ocupation' : 'Scientist',
+            'name' : 'Maria',
+            'lastName' : 'Jimenez Arroyo',
+            'Age' : '24',
+            'Ocupation' : 'Student',
             'Sex' : 'Female'
 		},
 		{
             'id' : 543,
-            'name' : 'Dani',
-            'lastName' : 'Bogdán',
-            'Age' : '3',
-            'Ocupation' : 'Tocapelotas',
+            'name' : 'Luis',
+            'lastName' : '',
+            'Age' : '29',
+            'Ocupation' : 'Designer',
             'Sex' : 'Male'
 		},
 		{
             'id' : 653,
-            'name' : 'Franz',
-            'lastName' : 'Solorzano Moreno',
+            'name' : 'Lucía',
+            'lastName' : 'Lopez',
             'Age' : '28',
-            'Ocupation' : 'Administrative',
-            'Sex' : 'Male'
+            'Ocupation' : 'Datamanager',
+            'Sex' : 'Female'
 		},
 		{
             'id' : 193,
-            'name' : 'Blacky',
-            'lastName' : '',
-            'Age' : '6',
-            'Ocupation' : '',
+            'name' : 'Andrea',
+            'lastName' : 'Rojas',
+            'Age' : '43',
+            'Ocupation' : 'Administrative',
+            'Sex' : 'Female'
+		},
+		{
+            'id' : 754,
+            'name' : 'Arnold',
+            'lastName' : 'Solorzano',
+            'Age' : '23',
+            'Ocupation' : 'Web developer',
             'Sex' : 'Male'
 		}
     ],
-    params : {
+    params : {//Parámetros básicos de la tabla.
         filter : true,
         edit : true,
         order: true
     },
-    config : {
-        actions : true,
-        realTime: false,
-        preview: true,
-        inlineEdit : false,
-        modal: true
+    config : {//Configuración extra de la tabla. Van ligados a los parámetros de indicados.
+        actions : true,//Edit
+        realTime: false,//Edit
+        preview: true,//Edit
+        inlineEdit : false,//Edit
+        modal: true//Edit
     }
 }
