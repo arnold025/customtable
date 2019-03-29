@@ -7,6 +7,7 @@ class Edit{
             Edit.listenClick();
         })
         this._modifiedData = []; // Array en el que se almacenarán los datos modificados.
+        this._removedData = [];
     }
     
     /**
@@ -56,22 +57,56 @@ class Edit{
      * @param {*} element -> elemento al que se ha hecho click
      */
     static editRow(element){
-        // let cols = Table.getColumnsWithoutHiddenData();//Columnas editables (que son visibles)
+        let cols = Table.getColumnsWithoutHiddenData();//Columnas editables (que son visibles)
         let row = element.closest('tr');//Fila del DOM
-        let keyRow = row.dataset["idrow"];
-        let originalRow = Table.getRowByKey(keyRow);//Almaceno los valores originales de la fila.
         let rows = row.children;
-        
         Object.keys(rows).forEach(function(el){
-            if(rows[el].children.length==0){// data-${cols[el]}=${rows[el].textContent}
-                rows[el].innerHTML=`<input class="inline-cTable"
+            if(rows[el].children.length==0){// 
+                rows[el].innerHTML=`<input class="inline-cTable" data-key="${cols[el]}" data-value="${rows[el].textContent}"
                                     type="text" value ="${rows[el].textContent}">`;
             }
         });
+        this.listenChangesInLine();
+    }
+
+    static listenChangesInLine(){
+        let that = this;
+        let inputs = document.querySelectorAll('.inline-cTable');
+        inputs.forEach(function(el){
+            el.addEventListener('blur',function(){//TODO:: NO es el evento click ¿Onblur?
+                that.setChangesInRow(this);
+            })
+        });
+    }
+
+    static setChangesInRow(element){
+        let id = element.closest('tr');
+        id = id.dataset['idrow'];
+        let key = element.dataset['key'];
+        let oldValue = element.dataset['value'];
+        let value = element.value;
+        if(oldValue == value) return;
+        let data = {
+            id,
+            [key] : value
+        };
+        this.setEditChanges(data, id);
+    }
+    
+    static setEditChanges(data, id){
+        if(!this._modifiedData[id]){
+            this._modifiedData[id] = data;
+        }else{
+            let mergedData = Object.assign(this._modifiedData[id], data);
+            this._modifiedData[id] = mergedData;
+        }
+    }
+
+    static getChanges(){
+        return this._modifiedData;
     }
 
     static removeRow(element){
         let row = element.closest('tr');
-        console.log(row);
     }
 }

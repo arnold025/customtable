@@ -62,7 +62,6 @@ class Table{
     static getRowByKey(keyRow){
         let key = this.getKeysByTable();
         let data = this.getContentTable();
-        console.log(data)
         data = data.filter(row => row[key] == keyRow)[0];
         let row ={};
         Object.keys(data).forEach(function(element){
@@ -154,11 +153,11 @@ var Example = {
         edit : true,
         order: true
     },
-    config : {//Configuración extra de la tabla. Van ligados a los parámetros de indicados.
-        actions : true,//Edit
-        realTime: false,//Edit
-        preview: true,//Edit
-        inlineEdit : false,//Edit
-        modal: true//Edit
+    config : {//Configuración extra de la tabla. Van ligados a los parámetros anteriormente indicados. (Params)
+        actions : true,//Despliega una columna más con botones de editar y borrar una fila en linea (Edit)
+        realTime: false,//True indica que cada modificación de la tabla será enviada al servidor (Edit)
+        confirmButtons : false,//Despliega botón de guardar para enviar los cambios a servidor (Edit)
+        preview: true,//Despliega un <div> con los cambios realizados y da la posibilidad de volver atrás. (Edit)
+        modal: true//Despliega tres botones: Crear, editar y borrar que abren un modal de confirmación para realizar las modificaciones pertinentes. (Edit)
     }
 }
