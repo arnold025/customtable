@@ -94,14 +94,17 @@ class Table{
     static getContentTableWithModifications(){
         let editRows = Edit.getChanges();
         let removedKeys = Object.keys(editRows['removed']);
+        let modifiedData = editRows['edit'];
         let contentTable = this.getContentModifiedInTable();
         let key = this.getKeysByTable();
         let data = [];
-        let count=0;
-        contentTable.forEach(function(el, index){
-            if(removedKeys.indexOf(el[key].toString())<0){
-                data[count] = el;
-                count++;
+        contentTable.forEach(function(element){
+            let index = element[key].toString();
+            if(removedKeys.indexOf(index)<0){
+                if(Object.keys(modifiedData).indexOf(index)>=0){
+                     Object.assign(element,modifiedData[index]);
+                }
+                data.push(element);
             }
         });
         return data;

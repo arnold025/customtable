@@ -115,6 +115,9 @@ class Edit{
         let id = row.dataset['idrow'];
         let field = Table.getRowByKey(id);
         this._removedData[id] = field;
+        if(this._modifiedData[id]){
+            delete this._modifiedData[id];
+        }
         row.remove();
     }
 }
