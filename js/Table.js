@@ -90,6 +90,22 @@ class Table{
     static getConfigTable(){
         return this._config;
     }
+
+    static getContentTableWithModifications(){
+        let editRows = Edit.getChanges();
+        let removedKeys = Object.keys(editRows['removed']);
+        let contentTable = this.getContentModifiedInTable();
+        let key = this.getKeysByTable();
+        let data = [];
+        let count=0;
+        contentTable.forEach(function(el, index){
+            if(removedKeys.indexOf(el[key].toString())<0){
+                data[count] = el;
+                count++;
+            }
+        });
+        return data;
+    }
 }
 /**Example
  * TODO:: DELETE Example!!
@@ -156,7 +172,7 @@ var Example = {
     config : {//Configuración extra de la tabla. Van ligados a los parámetros anteriormente indicados. (Params)
         actions : true,//Despliega una columna más con botones de editar y borrar una fila en linea (Edit)
         realTime: false,//True indica que cada modificación de la tabla será enviada al servidor (Edit)
-        confirmButtons : false,//Despliega botón de guardar para enviar los cambios a servidor (Edit)
+        confirmButtons : true,//Despliega botón de guardar para enviar los cambios a servidor (Edit)
         preview: true,//Despliega un <div> con los cambios realizados y da la posibilidad de volver atrás. (Edit)
         modal: true//Despliega tres botones: Crear, editar y borrar que abren un modal de confirmación para realizar las modificaciones pertinentes. (Edit)
     }

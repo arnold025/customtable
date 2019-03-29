@@ -14,7 +14,7 @@ class Edit{
      * Función en la que despliego diferentes llamadas a clases en relación a los parámetros que se han pasado en la posición 'config'.
      */
     static displayEditableTableByOptions(){//Función que recoge parámetros propios de la clase Edit.
-        const {modal, actions, inlineEdit, preview, realTime} = Table.getConfigTable();
+        const {modal, actions, preview, realTime} = Table.getConfigTable();
         if(modal) Modal.init();
         if(actions) this.displayActionsInTable();
     }
@@ -80,8 +80,7 @@ class Edit{
     }
 
     static setChangesInRow(element){
-        let id = element.closest('tr');
-        id = id.dataset['idrow'];
+        let id = element.closest('tr').dataset['idrow'];
         let key = element.dataset['key'];
         let oldValue = element.dataset['value'];
         let value = element.value;
@@ -103,10 +102,19 @@ class Edit{
     }
 
     static getChanges(){
-        return this._modifiedData;
+        let data = {
+            edit : this._modifiedData,
+            removed : this._removedData
+        }
+        return data;
     }
 
     static removeRow(element){
+        // if(!confirm('This line will be erased, are you sure?')) return;
         let row = element.closest('tr');
+        let id = row.dataset['idrow'];
+        let field = Table.getRowByKey(id);
+        this._removedData[id] = field;
+        row.remove();
     }
 }
