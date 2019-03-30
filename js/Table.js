@@ -174,9 +174,9 @@ var Example = {
     },
     config : {//Configuración extra de la tabla. Van ligados a los parámetros anteriormente indicados. (Params)
         actions : true,//Despliega una columna más con botones de editar y borrar una fila en linea (Edit)
-        realTime: false,//True indica que cada modificación de la tabla será enviada al servidor (Edit)
         confirmButtons : true,//Despliega botón de guardar para enviar los cambios a servidor (Edit)
-        preview: true,//Despliega un <div> con los cambios realizados y da la posibilidad de volver atrás. (Edit)
-        modal: true//Despliega tres botones: Crear, editar y borrar que abren un modal de confirmación para realizar las modificaciones pertinentes. (Edit)
+        modal: true,//Despliega tres botones: Crear, editar y borrar que abren un modal de edición para realizar las modificaciones pertinentes. (Edit)
+        preview: false,//Despliega un <div> con los cambios realizados y da la posibilidad de volver atrás. (Edit)
+        realTime: false,//True indica que cada modificación de la tabla será enviada al servidor (Edit)
     }
 }

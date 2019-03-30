@@ -59,4 +59,8 @@ class RenderTable{
     static getBodyTable(){
         return this._tbody;
     }
+
+    static getTable(){
+        return this._table;
+    }
 }

@@ -56,13 +56,13 @@ body{
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    border-radius: 5px;
   }
   
   .btn-create {
     background-color: white; 
     color: black; 
     border: 2px solid #4CAF50;
-    border-radius: 5px;
   }
   
   .btn-create:hover {
@@ -74,7 +74,6 @@ body{
     background-color: white; 
     color: black; 
     border: 2px solid #008CBA;
-    border-radius: 5px;
   }
   
   button.btn-edit:hover {
@@ -85,14 +84,31 @@ body{
   button.btn-delete {
     background-color: white; 
     color: black; 
-    border: 2px solid rgb(172, 39, 39);;
-    border-radius: 5px;
+    border: 2px solid rgb(172, 39, 39);
   }
   
   button.btn-delete:hover {
     background-color: rgb(172, 39, 39);
     color: white;
   }
+
+  button.btn-save{
+    background-color: rgba(30, 140, 30, 0.62);
+  }
+
+  button.btn-save:hover{
+    background-color: rgb(17, 97, 17);
+  }
+
+  button.btn-cancel{
+    background-color: rgb(183, 183, 183);
+  }
+
+  button.btn-cancel:hover{
+    background-color: rgb(150, 150, 150);
+  }
+
+
   input[type=text]{
     width: 130px;
     box-sizing: border-box;
