@@ -44,8 +44,10 @@ class Edit {
     static listenClick() {
         let btnEdit = document.querySelectorAll('.btn-edit-inline');
         let btnDelete = document.querySelectorAll('.btn-delete-inline');
-        Tools.bindEvent(btnEdit, "click", this.editRow);
-        Tools.bindEvent(btnDelete,"click", this.removeRow);
+        if(btnEdit.length >0){
+            Tools.bindEvent(btnEdit, "click", this.editRow);
+            Tools.bindEvent(btnDelete,"click", this.removeRow);
+        }
     }
 
     /**
@@ -127,6 +129,24 @@ class Edit {
         let buttons = `<button class="btn-table btn-save">Save</button><button class="btn-table btn-cancel">Cancel</button>`;
         container.innerHTML = buttons;
         table.appendChild(container);
+        this.listenClickInSaveButtons();
+    }
+
+    static listenClickInSaveButtons(){
+        let btnSave = document.querySelector('.btn-save');
+        let btnCancel = document.querySelector('.btn-cancel');
+        Tools.bindEvent(btnSave, 'click', this.saveChanges);
+        Tools.bindEvent(btnCancel,'click', this.discardChanges);
+    }
+
+    static saveChanges(ee){
+        //TODO:: Por implementar Clase AjaxTable
+    }
+
+    static discardChanges(ee){
+        Edit._modifiedData = [];
+        Edit._removedData = [];
+        RenderTable.renderBodyBySearch();
     }
     /* #endregion */
 }

@@ -92,10 +92,12 @@ class Table{
     }
 
     static getContentTableWithModifications(){
+        let contentTable = this.getContentModifiedInTable();
         let editRows = Edit.getChanges();
+        if(!editRows) return contentTable;
         let removedKeys = Object.keys(editRows['removed']);
         let modifiedData = editRows['edit'];
-        let contentTable = this.getContentModifiedInTable();
+        // if(contentTable.length == 0) contentTable = this.getContentTable();// Si no se ha modificado la tabla antes, se recogen los datos de la clase Table.
         let key = this.getKeysByTable();
         let data = [];
         contentTable.forEach(function(element){
