@@ -1,6 +1,9 @@
+body{
+  font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif !important;
+}
 #customTable{
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid #ddd;
     border-collapse: collapse;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
@@ -20,8 +23,240 @@
     text-align: left;
     background-color: rgba(17, 67, 107, 0.534);
     color: white;
+    cursor: pointer;
 }
+#customTable th:hover {
+    background-color:rgba(17, 71, 107, 0.301);
+}
+#customTable .actions-cTable{
+  display: flex;
+  justify-content: center;
+}
+#customTable .actions-cTable i{
+  margin-left: 5%;
+  cursor: pointer;
+}
+/**Div tools table**/
+
 #toolsCustomTable{
-    display:block;
+    display:flex;
+    flex-wrap: wrap;
     width: 100%;
+    justify-content: space-between;
+}
+/**Buttons**/
+.btn-table {
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn-create {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+  }
+  
+  .btn-create:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  button.btn-edit {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  button.btn-edit:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  
+  button.btn-delete {
+    background-color: white; 
+    color: black; 
+    border: 2px solid rgb(172, 39, 39);
+  }
+  
+  button.btn-delete:hover {
+    background-color: rgb(172, 39, 39);
+    color: white;
+  }
+
+  button.btn-save{
+    background-color: rgba(30, 140, 30, 0.62);
+  }
+
+  button.btn-save:hover{
+    background-color: rgb(17, 97, 17);
+  }
+
+  button.btn-cancel{
+    background-color: rgb(183, 183, 183);
+  }
+
+  button.btn-cancel:hover{
+    background-color: rgb(150, 150, 150);
+  }
+
+  div.cTable-buttons-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  input[type=text]{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 6px 10px 6px 20px;
+  }
+  input.inline-cTable{
+    font-size: 90% !important;
+    width: 90%;
+    padding: 5px;
+  }
+/**Input search**/
+input[type=text]#searchTable {
+  background-color: white;
+  background-image: url('../img/searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  transition: width 0.4s ease-in-out;
+  padding: 12px 20px 12px 40px;
+}
+
+input[type=text]:focus:not(.inline-cTable) {
+  width: 100%;
+}
+
+/**Modal**/
+/* The Modal (background) */
+.modal-cTable {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-cTable-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+.modal-fields{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.modal-fields input[type=text]{
+  width: 30%;
+}
+.modal-fields label{
+  width: 30%;
+}
+.modal-cTable .btn-modal{
+  border-radius: 5px;
+  background-color: #42424270;
+}
+.modal-cTable .btn-modal:hover{
+  border-radius: 5px;
+  background-color: #1dda0e61;
+}
+@media (max-width: 576px){
+  .modal-cTable-content {
+    width: 90%;
+  }
+  .modal-fields label{
+    width: 100%;
+  }
+  .modal-fields input[type=text]{
+    width: 100%;
+  }
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.close-modal-cTable {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-modal-cTable:hover, .close-modal-cTable:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-cTable-header {
+  padding: 0.5rem;
+  background-color: #48578a;
+  color: white;
+  border-radius: 14px 14px 0px 0px;
+}
+
+.modal-cTable-body {
+  padding: 2px 16px;
+  margin: 0.4rem;
+}
+
+.modal-footer {
+  padding: 1rem;
+  background-color: #48578a;
+  color: white;
+  border-radius: 0px 0px 14px 14px;
+  text-align: right;
+}
+
+.hiddenModal{
+  display: none !important;
+}
+
+/**Fin Modal**/
+
+
+/*Datos modificados*/
+.modifiedData{
+  background-color: #43de1073 !important;
 }

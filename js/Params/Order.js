@@ -1,7 +1,10 @@
 class Order{
     static init(){
-        this.displayButtons();
-        this.listenClick();
+        this._orderType = 'ASC';
+        const existsTable = RenderTable.isRenderTable();
+        existsTable.then(function(){//Me aseguro que la tabla ya esté renderizada antes de asignarle los eventos.
+            Order.listenClick();
+        });
     }
 
     /**
@@ -19,8 +22,9 @@ class Order{
      * para después ordenar de forma ascendente o descendente dicha columna.
      */
     static listenClick(){
-        let order = document.querySelectorAll("thead th");//Cambiar selector
-        [].forEach.call(order, function(el) {
+        let order = document.querySelectorAll("thead th:not(.actions-cTable)");//Cambiar selector
+        
+        order.forEach(function(el) {
             el.addEventListener("click", function() {
                 let parent = el.closest('tr');
                 parent.childNodes.forEach(function(element,index){
@@ -33,7 +37,7 @@ class Order{
     }
 
     static sortTable(position){
-        let keys = Object.keys(Table._content[0]);
+        let keys = Table.getColumnsWithoutHiddenData();
         let index = keys[position];
         let content = Table.getContentModifiedInTable();
         if(content.length>0){
@@ -42,10 +46,12 @@ class Order{
             content = Table.getContentTable();
             content = this.sortElements(content, index);
         }
-        RenderTable.renderBodyBySearch(content);
+        Table.setContentModifiedInTable(content);
+        RenderTable.renderBodyByEvent();
     }
 
-    static sortElements(element, index, type='ASC'){
+    static sortElements(element, index){
+        let that = this;
         element.sort(function (a, b) {
             let elementA = a[index];
             let elementB = b[index];
@@ -53,9 +59,15 @@ class Order{
                 elementA= parseInt(elementA);
                 elementB= parseInt(elementB);
             }
-            if(type=='ASC') return Order.orderElements(elementA,elementB);
-            else return Order.orderElements(elementB,elementA);
+            if(that._orderType=='ASC'){
+                return Order.orderElements(elementA,elementB);
+            }
+            else{
+                return Order.orderElements(elementB,elementA);
+            }
         });
+        if(this._orderType == 'ASC') this._orderType = 'DESC';
+        else this._orderType = 'ASC';
         return element;
     }
 

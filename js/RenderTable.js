@@ -7,33 +7,63 @@ class RenderTable{
         this._table = document.querySelector('#customTable');
         this.renderHeader(dataHeader);
         this.renderBody(dataBody);
+        this._renderTable= true;
     }
+
+    static async isRenderTable(){
+        return this._renderTable || false;
+    }
+
     static renderHeader(dataHeader){
-        let thead = "<thead><tr>";
+        this._thead = document.createElement('thead');
+        let rows = "<tr>";
         dataHeader.forEach(element => {
-            thead += `<th>${element}</th>`;
+            rows += `<th>${element}</th>`;
         });
-        thead += "</tr></thead>";
-        this._table.innerHTML=thead;
+        rows += "</tr>";
+        this._thead.innerHTML = rows;
+        this._table.appendChild(this._thead);
     }
     
     static renderBody(dataBody){
-        let tbody = document.createElement('tbody');
+        let hiddenItems = Table.getHiddenData();
+        let key = Table.getKeysByTable();
+        this._tbody = document.createElement('tbody');
         let content ="";
+        let td="";
         Object.keys(dataBody).map(item => {
-            content+= "<tr>";
             Object.keys(dataBody[item]).map(element => {
-                content+= `<td>${dataBody[item][element]}</td>`
+                if(!hiddenItems.includes(element.toLowerCase()) ){
+                    td += `<td>${dataBody[item][element]}</td>`
+                }
             });
-            content+= "</tr>";
+            content+= `<tr data-idrow="${dataBody[item][key]}">${td}</tr>`;
+            td="";
         });
-        tbody.innerHTML=content.trim();
-        this._table.appendChild(tbody);
+        this._tbody.innerHTML=content.trim();
+        this._table.appendChild(this._tbody);
     }
 
-    static renderBodyBySearch(inTable){
+    static renderBodyByEvent(search=false){
         let body = document.querySelector('#customTable>tbody');
         this._table.removeChild(body);
+        let inTable = Table.getContentTableWithModifications();
+        if(!search){
+            inTable = (inTable.length>0) ? inTable : Table.getContentTable() ;
+        }
         this.renderBody(inTable);
+        Edit.initEventsByEditTable();
+    }
+
+    static getHeaderTable(){
+        return this._thead;
+    }
+
+    static getBodyTable(){
+        return this._tbody;
+    }
+
+    static getTable(){
+        return this._table;
     }
 }
