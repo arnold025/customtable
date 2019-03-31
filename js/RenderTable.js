@@ -44,11 +44,11 @@ class RenderTable{
         this._table.appendChild(this._tbody);
     }
 
-    static renderBodyBySearch(inTable){
+    static renderBodyByEvent(search=false){
         let body = document.querySelector('#customTable>tbody');
         this._table.removeChild(body);
-        inTable = Table.getContentTableWithModifications();
-        if(!inTable){
+        let inTable = Table.getContentTableWithModifications();
+        if(!search){
             inTable = (inTable.length>0) ? inTable : Table.getContentTable() ;
         }
         this.renderBody(inTable);

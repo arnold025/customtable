@@ -16,7 +16,7 @@ class Filter {
         let input = document.querySelector('#searchTable').value;
         let inTable = this.searchInTable(input.toUpperCase());
         Table.setContentModifiedInTable(inTable);
-        RenderTable.renderBodyBySearch(inTable);
+        RenderTable.renderBodyByEvent(true);
     }
 
     //Función que busca en el objeto table.

@@ -126,6 +126,7 @@ class Edit {
         let table = RenderTable.getTable();
         table = table.parentNode;
         let container = document.createElement('div');
+        container.classList.add('cTable-buttons-container');
         let buttons = `<button class="btn-table btn-save">Save</button><button class="btn-table btn-cancel">Cancel</button>`;
         container.innerHTML = buttons;
         table.appendChild(container);
@@ -146,7 +147,7 @@ class Edit {
     static discardChanges(ee){
         Edit._modifiedData = [];
         Edit._removedData = [];
-        RenderTable.renderBodyBySearch();
+        RenderTable.renderBodyByEvent();
     }
     /* #endregion */
 }

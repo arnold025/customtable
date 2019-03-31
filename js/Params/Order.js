@@ -47,7 +47,7 @@ class Order{
             content = this.sortElements(content, index);
         }
         Table.setContentModifiedInTable(content);
-        RenderTable.renderBodyBySearch();
+        RenderTable.renderBodyByEvent();
     }
 
     static sortElements(element, index){
