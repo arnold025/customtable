@@ -52,7 +52,7 @@ class RenderTable{
             inTable = (inTable.length>0) ? inTable : Table.getContentTable() ;
         }
         this.renderBody(inTable);
-        Edit.listenClick();
+        Edit.initEventsByEditTable();
     }
 
     static getHeaderTable(){

@@ -2,11 +2,6 @@ class Edit {
 
     static init() {
         this.displayEditableTableByOptions();
-        const existsTable = RenderTable.isRenderTable();
-        existsTable.then(function () {//Me aseguro que la tabla ya esté renderizada antes de asignarle los eventos.
-            Edit.listenClick();
-            Edit.displayButtonsToSaveChanges();
-        })
         this._modifiedData = []; // Array en el que se almacenarán los datos modificados.
         this._removedData = []; // Array en el que se almacenarán los datos que van a guardarse.
     }
@@ -20,6 +15,17 @@ class Edit {
         if (actions) this.displayActionsInTable();//Despliego columna al final de la tabla para el editor en línea.
         // if (confirmButtons) this.displayButtonsToSaveChanges();
         if (preview) this.displayPreviewChanges();
+        this.initEventsByEditTable();
+    }
+
+    static initEventsByEditTable(){
+        const {actions, confirmButtons} = Table.getConfigTable();
+        if(!actions && !confirmButtons) return;
+        const existsTable = RenderTable.isRenderTable();
+        existsTable.then(function () {//Me aseguro que la tabla ya esté renderizada antes de asignarle los eventos.
+            if (actions) Edit.listenClickActionsInline();
+            if (confirmButtons) Edit.displayButtonsToSaveChanges();
+        });
     }
 
     /* #region  Actions */
@@ -41,7 +47,7 @@ class Edit {
         });
     }
 
-    static listenClick() {
+    static listenClickActionsInline() {
         let btnEdit = document.querySelectorAll('.btn-edit-inline');
         let btnDelete = document.querySelectorAll('.btn-delete-inline');
         if(btnEdit.length >0){
@@ -123,6 +129,7 @@ class Edit {
 
     /* #region  Buttons Save-Cancel */
     static displayButtonsToSaveChanges() {
+        if(this._buttons) return;
         let table = RenderTable.getTable();
         table = table.parentNode;
         let container = document.createElement('div');
@@ -131,6 +138,7 @@ class Edit {
         container.innerHTML = buttons;
         table.appendChild(container);
         this.listenClickInSaveButtons();
+        this._buttons=true;
     }
 
     static listenClickInSaveButtons(){
