@@ -81,10 +81,11 @@ class Table{
     static displayParamsTable(){
         //TODO:: Esta función no sólo debe inicializar las clases, sino también cargarlas.
         //En la carga inicial del DOM sólo debe cargar la clase principal `Table` y desde aquí llamar a las que se requieran.
-        const {filter, edit, order} = this._params;
+        const {filter, edit, order, pagination} = this._params;
         if(edit) Edit.init();
         if(filter) Filter.init();
         if(order) Order.init();
+        if(pagination) Pagination.init();
     }
 
     static getConfigTable(){
@@ -172,7 +173,8 @@ var Example = {
     params : {//Parámetros básicos de la tabla.
         filter : true,
         edit : true,
-        order: true
+        order: true,
+        pagination : true
     },
     config : {//Configuración extra de la tabla. Van ligados a los parámetros anteriormente indicados. (Params)
         actions : true,//Despliega una columna más con botones de editar y borrar una fila en linea (Edit)
@@ -180,5 +182,7 @@ var Example = {
         modal: true,//Despliega tres botones: Crear, editar y borrar que abren un modal de edición para realizar las modificaciones pertinentes. (Edit)
         preview: false,//Despliega un <div> con los cambios realizados y da la posibilidad de volver atrás. (Edit)
         realTime: false,//True indica que cada modificación de la tabla será enviada al servidor (Edit)
+        elementsPage: 5,
+        maxButtonsPagination: 5 //Número de botones que habrá en la paginación.
     }
 }

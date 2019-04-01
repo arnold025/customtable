@@ -134,7 +134,7 @@ class Edit {
         table = table.parentNode;
         let container = document.createElement('div');
         container.classList.add('cTable-buttons-container');
-        let buttons = `<button class="btn-table btn-save">Save</button><button class="btn-table btn-cancel">Cancel</button>`;
+        let buttons = `<div class="cTable-saveButtons"><button class="btn-table btn-save">Save</button><button class="btn-table btn-cancel">Cancel</button></div>`;
         container.innerHTML = buttons;
         table.appendChild(container);
         this.listenClickInSaveButtons();
